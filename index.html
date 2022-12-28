@@ -25,42 +25,42 @@
         <img src="./images/aokigahara.png" alt="Аокигахара" class="card__image">
         <div class="card__caption">
           <h2 class="card__title">Аокигахара</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" class="card__like card__like_active"></button>
         </div>
       </div>
       <div class="card">
         <img src="./images/fudji.png" alt="Фудзи" class="card__image">
         <div class="card__caption">
           <h2 class="card__title">Фудзи</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" class="card__like card__like_active"></button>
         </div>
       </div>
       <div class="card">
         <img src="./images/honsu.png" alt="Хонсю" class="card__image">
         <div class="card__caption">
           <h2 class="card__title">Хонсю</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" class="card__like card__like_active"></button>
         </div>
       </div>
       <div class="card">
         <img src="./images/kyoto.png" alt="Киото" class="card__image">
         <div class="card__caption">
           <h2 class="card__title">Киото</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" class="card__like card__like_active"></button>
         </div>
       </div>
       <div class="card">
         <img src="./images/okinawa.png" alt="Окинава" class="card__image">
         <div class="card__caption">
           <h2 class="card__title">Окинава</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" class="card__like card__like_active"></button>
         </div>
       </div>
       <div class="card">
         <img src="./images/tokyo.png" alt="Токио" class="card__image">
         <div class="card__caption">
           <h2 class="card__title">Токио</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" class="card__like card__like_active"></button>
         </div>
       </div>
     </section>
@@ -68,5 +68,18 @@
   <footer class="footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
+  <section class="popup popup_opened">
+    <button type="reset" class="popup__reset-button"></button>
+    <div class="popup__container">
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form class="popup__form">
+        <fieldset class="popup__user-info">
+          <input type="text" name="fullname" class="popup__username">
+          <input type="text" name="about" class="popup__about-user">
+        </fieldset>
+        <button type="submit" class="popup__submit-button">Сохранить</button>
+      </form>
+    </div>
+  </section>
 </body>
 </html>
