@@ -1,0 +1,18 @@
+.popup__about-user {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 27px 0 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__about-user {
+    padding: 28px 0 10px;
+  }
+}

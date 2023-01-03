@@ -1,0 +1,19 @@
+.profile__info {
+  padding: 21px 0 0 30px;
+  width: fit-content;
+  height: 73px;
+}
+
+@media screen and (max-width: 875px) {
+  .profile__info {
+    width: 43%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info {
+    height: 54px;
+    padding: 25px;
+    width: fit-content;
+  }
+}

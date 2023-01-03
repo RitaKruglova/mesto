@@ -1,0 +1,16 @@
+.popup__user-info {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  width: 358px;
+  align-items: center;
+  padding: 50px 0 0;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__user-info {
+    width: 238px;
+    padding: 77px 0 0;
+  }
+}

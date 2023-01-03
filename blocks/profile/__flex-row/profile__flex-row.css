@@ -1,0 +1,13 @@
+.profile__flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  overflow: hidden;
+  
+}
+
+@media screen and (max-width: 768px) {
+  .profile__flex-row {
+    justify-content: center;
+  }
+}
