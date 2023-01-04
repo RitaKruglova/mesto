@@ -1,7 +1,15 @@
 .page {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
   background-color: #000000;
   min-width: 768px;
   width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
 }
 
 @media screen and (max-width: 768px) {
