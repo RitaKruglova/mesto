@@ -8,11 +8,17 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  padding: 27px 0 10px;
+  padding: 0 0 10px;
+  margin: 27px 0 0;
+}
+
+.popup__about-user:focus {
+  outline: none;
 }
 
 @media screen and (max-width: 768px) {
   .popup__about-user {
-    padding: 28px 0 10px;
+    padding: 0 0 10px;
+    margin: 28px 0 0;
   }
 }
