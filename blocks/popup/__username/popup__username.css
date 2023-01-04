@@ -10,3 +10,7 @@
   line-height: 17px;
   padding: 0 0 10px;
 }
+
+.popup__username:focus {
+  outline: none;
+}
