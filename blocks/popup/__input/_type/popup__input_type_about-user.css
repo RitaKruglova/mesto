@@ -1,0 +1,10 @@
+.popup__input_type_about-user {
+  padding: 0 0 10px;
+  margin: 27px 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__input_type_about-user {
+    margin: 28px 0 0;
+  }
+}
