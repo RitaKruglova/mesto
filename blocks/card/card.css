@@ -2,11 +2,4 @@
   border: 1px solid black;
   border-radius: 10px;
   background-color: white;
-  height: 360px;
-}
-
-@media screen and (max-width: 768px) {
-  .card {
-    height: 361px;
-  }
 }
