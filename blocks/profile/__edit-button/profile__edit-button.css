@@ -8,6 +8,8 @@
   height: 24px;
   border: 1px solid white;
   padding: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .profile__edit-button:hover {

@@ -6,9 +6,19 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
+  padding: 0 0 10px;
 }
 
 .popup__input:focus {
   outline: none;
 }
 
+.popup__input:first-child {
+  margin: 27px 0 0;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__input:first-child {
+    margin: 28px 0 0;
+  }
+}
