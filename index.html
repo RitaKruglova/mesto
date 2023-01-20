@@ -27,48 +27,16 @@
       <button type="button" class="profile__add-button" aria-label="Добавить"></button>
     </section>
     <section class="cards">
-      <article class="card">
-        <img src="./images/aokigahara.png" alt="Аокигахара" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__title">Аокигахара</h2>
-          <button type="button" class="card__like" aria-label="Нравится"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/fudji.png" alt="Фудзи" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__title">Фудзи</h2>
-          <button type="button" class="card__like" aria-label="Нравится"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/honsu.png" alt="Хонсю" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__title">Хонсю</h2>
-          <button type="button" class="card__like" aria-label="Нравится"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/kyoto.png" alt="Киото" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__title">Киото</h2>
-          <button type="button" class="card__like" aria-label="Нравится"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/okinawa.png" alt="Окинава" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__title">Окинава</h2>
-          <button type="button" class="card__like" aria-label="Нравится"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="./images/tokyo.png" alt="Токио" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__title">Токио</h2>
-          <button type="button" class="card__like" aria-label="Нравится"></button>
-        </div>
-      </article>
+      <template id="card-template">
+        <article class="card">
+          <img class="card__image">
+          <button type="button" class="card__recycle-bin" aria-label="Удалить карточку"></button>
+          <div class="card__caption">
+            <h2 class="card__title"></h2>
+            <button type="button" class="card__like" aria-label="Нравится"></button>
+          </div>
+        </article>
+      </template>
     </section>
   </main>
   <footer class="footer">
