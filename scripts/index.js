@@ -119,10 +119,12 @@ recycleBinButtons.forEach(item => {
 function addNewCard(event) {
   event.preventDefault();
   const card = cardTemplate.cloneNode(true);
-  card.querySelector('.card__image').setAttribute('src', pictureLinkInput.value);
+  const cardImage = card.querySelector('.card__image');
+  cardImage.setAttribute('src', pictureLinkInput.value);
+  cardImage.setAttribute('alt', pictureNameInput.value);
   card.querySelector('.card__title').textContent = pictureNameInput.value;
   card.querySelector('.card__like').addEventListener('click', like);
-  card.querySelector('.card__image').addEventListener('click', openPicturePopup);
+  cardImage.addEventListener('click', openPicturePopup);
   card.querySelector('.card__recycle-bin').addEventListener('click', deleteButton);
   cards.prepend(card);
   popupAddCard.classList.remove('popup_opened');
