@@ -24,3 +24,7 @@
   opacity: 0;
   visibility: hidden;
 }
+
+.popup:last-of-type {
+  background-color: rgba(0, 0, 0, 0.9);
+}
