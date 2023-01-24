@@ -3,6 +3,8 @@
   top: 20px;
   right: 20px;
   background-image: url(../../../images/recycle-bin-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   width: 18px;
   height: 19px;
   border: 0;
