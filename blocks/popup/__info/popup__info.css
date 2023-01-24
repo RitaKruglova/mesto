@@ -1,4 +1,4 @@
-.popup__user-info {
+.popup__info {
   border: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .popup__user-info {
+  .popup__info {
     padding: 50px 24px 0;
   }
 }
