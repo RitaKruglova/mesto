@@ -27,16 +27,6 @@
       <button type="button" class="profile__add-button" aria-label="Добавить"></button>
     </section>
     <section class="cards">
-      <template id="card-template">
-        <article class="card">
-          <img class="card__image">
-          <button type="button" class="card__recycle-bin" aria-label="Удалить карточку"></button>
-          <div class="card__caption">
-            <h2 class="card__title"></h2>
-            <button type="button" class="card__like" aria-label="Нравится"></button>
-          </div>
-        </article>
-      </template>
     </section>
   </main>
   <footer class="footer">
@@ -71,10 +61,20 @@
   <div class="popup popup_type_picture">
     <div class="popup__container popup__container_place_popup-picture">
       <button type="button" class="popup__reset-button popup__reset-button_place_popup-picture" aria-label="Отменить"></button>
-      <img class="popup__image">
+      <img class="popup__image" src="#" alt="#">
       <p class="popup__image-name"></p>
     </div>
   </div>
+  <template id="card-template">
+    <article class="card">
+      <img class="card__image" src="#" alt="#">
+      <button type="button" class="card__recycle-bin" aria-label="Удалить карточку"></button>
+      <div class="card__caption">
+        <h2 class="card__title"></h2>
+        <button type="button" class="card__like" aria-label="Нравится"></button>
+      </div>
+    </article>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
