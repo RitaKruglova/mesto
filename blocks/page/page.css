@@ -3,7 +3,7 @@
   font-style: normal;
   background-color: #000000;
   min-width: 768px;
-  width: 100vw;
+  width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
