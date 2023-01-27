@@ -96,10 +96,6 @@ addCardFormElement.addEventListener('submit', addNewCard);
 
 addButton.addEventListener('click', () => openPopup(popupAddCard));
 
-recycleBinButtons.forEach(item => {
-  item.addEventListener('click', deleteCard);
-})
-
 editFormElement.addEventListener('submit', changeProfileInfo);
 
 addInitialCards(initialCards);
