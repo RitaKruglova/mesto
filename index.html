@@ -36,10 +36,28 @@
     <div class="popup__container">
       <button type="button" class="popup__reset-button" aria-label="Отменить"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form class="popup__form popup__form_type_edit-profile" name="profile-form">
+      <form class="popup__form popup__form_type_edit-profile" name="profile-form" novalidate>
         <fieldset class="popup__info">
-          <input type="text" name="fullname" class="popup__input popup__input_type_username" placeholder="Введите имя" value="Юно Гасай">
-          <input type="text" name="about" class="popup__input popup__input_type_about-user" placeholder="Введите род деятельности" value="Школьница">
+          <input id="input-name"
+          type="text"
+          name="fullname"
+          class="popup__input popup__input_type_username"
+          placeholder="Введите имя"
+          value="Юно Гасай"
+          required
+          minlength="2"
+          maxlength="40">
+          <span id="input-name-error" class="popup__error popup__error_visible"></span>
+          <input id="input-about-user"
+          type="text"
+          name="about"
+          class="popup__input popup__input_type_about-user"
+          placeholder="Введите род деятельности"
+          value="Школьница"
+          required
+          minlength="2"
+          maxlength="200">
+          <span id="input-about-user-error" class="popup__error popup__error_visible"></span>
         </fieldset>
         <button type="submit" class="popup__submit-button popup__submit-button_type_edit-profile">Сохранить</button>
       </form>
@@ -49,12 +67,26 @@
     <div class="popup__container">
       <button type="button" class="popup__reset-button" aria-label="Отменить"></button>
       <h3 class="popup__title">Новое место</h3>
-      <form class="popup__form popup__form_type_add-card" name="add-card-form">
+      <form class="popup__form popup__form_type_add-card" name="add-card-form" novalidate>
         <fieldset class="popup__info">
-          <input type="text" name="name" class="popup__input popup__input_type_picture-name" placeholder="Название">
-          <input type="text" name="link" class="popup__input popup__input_type_picture-link" placeholder="Ссылка на картинку">
+          <input id="input-picture-name"
+          type="text"
+          name="name"
+          class="popup__input popup__input_type_picture-name"
+          placeholder="Название"
+          required
+          minlength="2"
+          maxlength="30">
+          <span id="input-picture-name-error" class="popup__error popup__error_visible"></span>
+          <input id="input-link"
+          type="url"
+          name="link"
+          class="popup__input popup__input_type_picture-link"
+          placeholder="Ссылка на картинку"
+          required>
+          <span id="input-link-error" class="popup__error popup__error_visible"></span>
         </fieldset>
-        <button type="submit" class="popup__submit-button popup__submit-button_type_add-card">Создать</button>
+        <button type="submit" class="popup__submit-button popup__submit-button_type_add-card popup__submit-button_disabled">Создать</button>
       </form>
     </div>
   </div>
@@ -77,5 +109,6 @@
   </template>
   <script src="./scripts/initial-сards.js"></script>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validation.js"></script>
 </body>
 </html>
