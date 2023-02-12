@@ -27,6 +27,10 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  const popupForm = popup.querySelector('.popup__form');
+  if (popupForm) {
+    popupForm.reset();
+  }
 }
 
 function createCard(name, link) {
@@ -99,3 +103,17 @@ addButton.addEventListener('click', () => openPopup(popupAddCard));
 editFormElement.addEventListener('submit', changeProfileInfo);
 
 addInitialCards(initialCards);
+
+const popupForms = document.querySelectorAll('.popup');
+popupForms.forEach(popup => {
+  popup.addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+      closePopup(popup);
+    }
+  })
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closePopup(popup);
+    }
+  })
+})
