@@ -7,6 +7,16 @@ selectors = {
   errorClass: 'popup__error_visible'
 };
 
+function showError(input, error, inputErrorClass) {
+  input.classList.add(inputErrorClass);
+  error.textContent = input.validationMessage;
+};
+
+function hideError(input, error, inputErrorClass) {
+  input.classList.remove(inputErrorClass);
+  error.textContent = '';
+}
+
 function cancelStandartBehavior(event) {
   event.preventDefault();
 }
@@ -39,11 +49,9 @@ function checkValidity(event, selectors) {
   const error = input.nextElementSibling;
   
   if (input.validity.valid) {
-    input.classList.remove(selectors.inputErrorClass);
-    error.textContent = '';
+    hideError(input, error, selectors.inputErrorClass)
   } else {
-    input.classList.add(selectors.inputErrorClass);
-    error.textContent = input.validationMessage;
+    showError(input, error, selectors.inputErrorClass);
   }
 }
 

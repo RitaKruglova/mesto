@@ -19,6 +19,8 @@ const pictureNameInput = document.querySelector('.popup__input_type_picture-name
 const pictureLinkInput = document.querySelector('.popup__input_type_picture-link');
 const addCardButton = document.querySelector('.popup__submit-button_type_add-card');
 const recycleBinButtons = document.querySelectorAll('.card__recycle-bin');
+const popupForms = document.querySelectorAll('.popup');
+const inputErrorClass = 'popup__input_type_error';
 
 
 function openPopup(popup) {
@@ -30,6 +32,14 @@ function closePopup(popup) {
   const popupForm = popup.querySelector('.popup__form');
   if (popupForm) {
     popupForm.reset();
+    popupForm.querySelectorAll('.popup__input').forEach(input => {
+      const error = input.nextElementSibling;
+      console.log(input);
+      hideError(input, error, inputErrorClass)
+    })
+    const submitButton = popupForm.querySelector('.popup__submit-button');
+    submitButton.removeAttribute('disabled');
+    submitButton.classList.remove('popup__submit-button_disabled');
   }
 }
 
@@ -90,7 +100,6 @@ function changeProfileInfo(event) {
   closePopup(popupEditProfile);
 }
 
-const popupForms = document.querySelectorAll('.popup');
 popupForms.forEach(popup => {
   popup.addEventListener('click', (event) => {
     if (event.target === event.currentTarget) {
