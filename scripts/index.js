@@ -90,20 +90,6 @@ function changeProfileInfo(event) {
   closePopup(popupEditProfile);
 }
 
-resetButtons.forEach(item => {
-  item.addEventListener('click', () => closePopup(item.closest('.popup')));
-});
-
-editButton.addEventListener('click', openEditProfilePopup);
-
-addCardFormElement.addEventListener('submit', addNewCard);
-
-addButton.addEventListener('click', () => openPopup(popupAddCard));
-
-editFormElement.addEventListener('submit', changeProfileInfo);
-
-addInitialCards(initialCards);
-
 const popupForms = document.querySelectorAll('.popup');
 popupForms.forEach(popup => {
   popup.addEventListener('click', (event) => {
@@ -117,3 +103,17 @@ popupForms.forEach(popup => {
     }
   })
 })
+
+resetButtons.forEach(item => {
+  item.addEventListener('click', () => closePopup(item.closest('.popup')));
+});
+
+editButton.addEventListener('click', openEditProfilePopup);
+
+addCardFormElement.addEventListener('submit', addNewCard);
+
+addButton.addEventListener('click', () => openPopup(popupAddCard));
+
+editFormElement.addEventListener('submit', changeProfileInfo);
+
+addInitialCards(initialCards);
