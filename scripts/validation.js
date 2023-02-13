@@ -1,4 +1,4 @@
-selectors = {
+const selectors = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__submit-button',
@@ -29,13 +29,13 @@ function enableValidation(selectors) {
   });
 }
 
-function isValidInput(inputs) {
+function isAllInputsValid(inputs) {
   inputs = Array.from(inputs);
   return inputs.every(input => input.validity.valid);
 }
 
 function toggleSubmitButton(inputs, submitButton, selectors) {
-  if (isValidInput(inputs)) {
+  if (isAllInputsValid(inputs)) {
     submitButton.removeAttribute('disabled');
     submitButton.classList.remove(selectors.inactiveButtonClass);
   } else {
@@ -67,6 +67,21 @@ function setEventListeners(form, selectors) {
   })
 }
 
+function disableSubmitButton(submitButton) {
+  submitButton.setAttribute('disabled', true);
+  submitButton.classList.add('popup__submit-button_disabled');
+}
 
+function enableSubmitButton(submitButton) {
+  submitButton.removeAttribute('disabled');
+  submitButton.classList.remove('popup__submit-button_disabled');
+}
+
+function removeValidationErrors(form) {
+  form.querySelectorAll('.popup__input').forEach(input => {
+    const error = input.nextElementSibling;
+    hideError(input, error, inputErrorClass)
+  })
+}
 
 enableValidation(selectors); 
