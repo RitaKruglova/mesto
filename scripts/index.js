@@ -33,8 +33,8 @@ function closePopupsByOverlay() {
 }
 
 function closePopupByEscape(event) {
-  const popup = document.querySelector('.popup_opened');
   if (event.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
     closePopup(popup);
   }
 }
