@@ -11,7 +11,7 @@
   margin: 0 auto;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center;
+  justify-content: left;
 }
 
 @media screen and (max-width: 918px) {
