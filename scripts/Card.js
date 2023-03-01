@@ -1,3 +1,5 @@
+import { openPopup } from "./index.js";
+
 export default class Card {
   constructor(cardInfo, templateSelector) {
     this._name = cardInfo.name;
@@ -27,7 +29,7 @@ export default class Card {
 
   _openPopup(cardInfo) {
     const popup = document.querySelector('.popup_type_picture');
-    popup.classList.add('popup_opened');
+    openPopup(popup);
     const popupImage = popup.querySelector('.popup__image');
     popupImage.setAttribute('src', cardInfo.link);
     popupImage.setAttribute('alt', cardInfo.name);

@@ -58,13 +58,6 @@ function addInitialCards(initialCards) {
   })
 }
 
-function openPicturePopup(name, link) {
-  openPopup(picturePopup);
-  popupImage.setAttribute('src', link);
-  popupImage.setAttribute('alt', name);
-  popupImageName.textContent = name;
-}
-
 function openEditProfilePopup() {
   openPopup(popupEditProfile);
   removeValidationErrors(editFormElement);
@@ -152,3 +145,4 @@ addInitialCards(initialCards);
 closePopupsByOverlay();
 
 export { showError, hideError }
+export { openPopup }
