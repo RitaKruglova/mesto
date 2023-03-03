@@ -1,7 +1,7 @@
 import Card from './Card.js';
 import { initialCards } from './initial-сards.js';
 import FormValidator from './FormValidator.js';
-import { selectors } from './selectors.js'
+import { validationConfig } from './validationConfig.js'
 
 const container = document.querySelector('.content');
 const editButton = container.querySelector('.profile__edit-button');
@@ -24,13 +24,20 @@ const pictureLinkInput = document.querySelector('.popup__input_type_picture-link
 const addCardButton = document.querySelector('.popup__submit-button_type_add-card');
 const popups = document.querySelectorAll('.popup');
 const editProfileSubmitButton = document.querySelector('.popup__submit-button_type_edit-profile');
+const validators = {};
+
+
+function createCard(cardInfo) {
+  const card = new Card(cardInfo, '#card-template', handleOpenPopup);
+  return card.getCard();
+}
 
 function closePopupsByOverlay() {
   popups.forEach(popup => {
-  popup.addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-      closePopup(popup);
-    }});
+    popup.addEventListener('click', (event) => {
+      if (event.target === event.currentTarget) {
+        closePopup(popup);
+      }});
   });
 }
 
@@ -53,15 +60,15 @@ function closePopup(popup) {
 
 function addInitialCards(initialCards) {
   initialCards.forEach(item => {
-    const card = new Card(item, '#card-template');
-    cardsContainer.append(card.getCard());
+    cardsContainer.append(createCard(item));
   })
 }
 
 function openEditProfilePopup() {
   openPopup(popupEditProfile);
-  removeValidationErrors(editFormElement);
-  enableSubmitButton(editProfileSubmitButton);
+  const formValidator = validators[editFormElement.getAttribute('name')];
+  formValidator.removeValidationError();
+  formValidator.enableSubmitButton(editProfileSubmitButton);
   usernameInput.value = username.textContent;
   aboutUserInput.value = aboutUser.textContent;
 }
@@ -72,8 +79,7 @@ function addNewCard(event) {
     name: pictureNameInput.value,
     link: pictureLinkInput.value
   }
-  const card = new Card(cardInfo, '#card-template');
-  cardsContainer.prepend(card.getCard());
+  cardsContainer.prepend(createCard(cardInfo));
   closePopup(popupAddCard);
   addCardFormElement.reset();
 }
@@ -85,41 +91,21 @@ function changeProfileInfo(event) {
   closePopup(popupEditProfile);
 }
 
-function showError(input, error, inputErrorClass) {
-  input.classList.add(inputErrorClass);
-  error.textContent = input.validationMessage;
-}
-
-function hideError(input, error, inputErrorClass) {
-  input.classList.remove(inputErrorClass);
-  error.textContent = '';
-}
-
-function disableSubmitButton(submitButton) {
-  submitButton.setAttribute('disabled', true);
-  submitButton.classList.add('popup__submit-button_disabled');
-}
-
-function enableSubmitButton(submitButton) {
-  submitButton.removeAttribute('disabled');
-  submitButton.classList.remove('popup__submit-button_disabled');
-}
-
-function removeValidationErrors(form) {
-  form.querySelectorAll('.popup__input').forEach(input => {
-    const error = input.nextElementSibling;
-    hideError(input, error, selectors.inputErrorClass);
-  })
-}
-
 function enableValidation() {
   const forms = document.querySelectorAll('.popup__form');
   forms.forEach(form => {
-    const formValidator = new FormValidator(selectors, form);
+    const formValidator = new FormValidator(validationConfig, form);
+    validators[form.getAttribute('name')] = formValidator;
     formValidator.enableValidation();
   });
 }
 
+function handleOpenPopup(name, link) {
+  openPopup(picturePopup);
+  popupImage.setAttribute('src', link);
+  popupImage.setAttribute('alt', name);
+  popupImageName.textContent = name;
+}
 
 enableValidation(); 
 
@@ -134,8 +120,9 @@ addCardFormElement.addEventListener('submit', addNewCard);
 plusButton.addEventListener('click', () => {
   addCardFormElement.reset();
   openPopup(popupAddCard);
-  removeValidationErrors(addCardFormElement);
-  disableSubmitButton(addCardButton);
+  const formValidator = validators[addCardFormElement.getAttribute('name')];
+  formValidator.removeValidationError();
+  formValidator.disableSubmitButton(addCardButton);
 });
 
 editFormElement.addEventListener('submit', changeProfileInfo);
@@ -143,6 +130,3 @@ editFormElement.addEventListener('submit', changeProfileInfo);
 addInitialCards(initialCards);
 
 closePopupsByOverlay();
-
-export { showError, hideError }
-export { openPopup }
