@@ -21,9 +21,7 @@ const popupImageName = document.querySelector('.popup__image-name');
 const addCardFormElement = document.querySelector('.popup__form_type_add-card');
 const pictureNameInput = document.querySelector('.popup__input_type_picture-name');
 const pictureLinkInput = document.querySelector('.popup__input_type_picture-link');
-const addCardButton = document.querySelector('.popup__submit-button_type_add-card');
 const popups = document.querySelectorAll('.popup');
-const editProfileSubmitButton = document.querySelector('.popup__submit-button_type_edit-profile');
 const validators = {};
 
 
@@ -68,7 +66,7 @@ function openEditProfilePopup() {
   openPopup(popupEditProfile);
   const formValidator = validators[editFormElement.getAttribute('name')];
   formValidator.removeValidationError();
-  formValidator.enableSubmitButton(editProfileSubmitButton);
+  formValidator.enableSubmitButton();
   usernameInput.value = username.textContent;
   aboutUserInput.value = aboutUser.textContent;
 }
@@ -122,7 +120,7 @@ plusButton.addEventListener('click', () => {
   openPopup(popupAddCard);
   const formValidator = validators[addCardFormElement.getAttribute('name')];
   formValidator.removeValidationError();
-  formValidator.disableSubmitButton(addCardButton);
+  formValidator.disableSubmitButton();
 });
 
 editFormElement.addEventListener('submit', changeProfileInfo);

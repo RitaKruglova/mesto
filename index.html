@@ -38,28 +38,32 @@
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form popup__form_type_edit-profile" name="profile-form" novalidate>
         <fieldset class="popup__info">
-          <input id="input-name"
-          type="text"
-          name="fullname"
-          class="popup__input popup__input_type_username"
-          placeholder="Введите имя"
-          value="Юно Гасай"
-          required
-          minlength="2"
-          maxlength="40">
+          <input
+            id="input-name"
+            type="text"
+            name="fullname"
+            class="popup__input popup__input_type_username"
+            placeholder="Введите имя"
+            value="Юно Гасай"
+            required
+            minlength="2"
+            maxlength="40"
+          >
           <span id="input-name-error" class="popup__error popup__error_visible"></span>
-          <input id="input-about-user"
-          type="text"
-          name="about"
-          class="popup__input popup__input_type_about-user"
-          placeholder="Введите род деятельности"
-          value="Школьница"
-          required
-          minlength="2"
-          maxlength="200">
+          <input
+            id="input-about-user"
+            type="text"
+            name="about"
+            class="popup__input popup__input_type_about-user"
+            placeholder="Введите род деятельности"
+            value="Школьница"
+            required
+            minlength="2"
+            maxlength="200"
+          >
           <span id="input-about-user-error" class="popup__error popup__error_visible"></span>
         </fieldset>
-        <button type="submit" class="popup__submit-button popup__submit-button_type_edit-profile">Сохранить</button>
+        <button type="submit" class="popup__submit-button">Сохранить</button>
       </form>
     </div>
   </div>
@@ -80,15 +84,17 @@
             maxlength="30"
           >
           <span id="input-picture-name-error" class="popup__error popup__error_visible"></span>
-          <input id="input-link"
-          type="url"
-          name="link"
-          class="popup__input popup__input_type_picture-link"
-          placeholder="Ссылка на картинку"
-          required>
+          <input
+            id="input-link"
+            type="url"
+            name="link"
+            class="popup__input popup__input_type_picture-link"
+            placeholder="Ссылка на картинку"
+            required
+          >
           <span id="input-link-error" class="popup__error popup__error_visible"></span>
         </fieldset>
-        <button type="submit" class="popup__submit-button popup__submit-button_type_add-card popup__submit-button_disabled" disabled>Создать</button>
+        <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Создать</button>
       </form>
     </div>
   </div>

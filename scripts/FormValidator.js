@@ -3,6 +3,7 @@ export default class FormValidator {
     this._form = form;
     this._selectors = selectors;
     this._inputs = this._form.querySelectorAll('.popup__input');
+    this._submitButton = this._form.querySelector('.popup__submit-button');
   }
 
   enableValidation() {
@@ -15,11 +16,10 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    const submitButton = this._form.querySelector(this._selectors.submitButtonSelector);
     this._inputs.forEach(input => {
       input.addEventListener('input', event => {
         this._checkValidity(event);
-        this._toggleSubmitButton(submitButton);
+        this._toggleSubmitButton();
       })
     })
   }
@@ -45,13 +45,13 @@ export default class FormValidator {
     error.textContent = '';
   }
 
-  _toggleSubmitButton(submitButton) {
+  _toggleSubmitButton() {
     if (this._isAllInputsValid()) {
-      submitButton.removeAttribute('disabled');
-      submitButton.classList.remove(this._selectors.inactiveButtonClass);
+      this._submitButton.removeAttribute('disabled');
+      this._submitButton.classList.remove(this._selectors.inactiveButtonClass);
     } else {
-      submitButton.setAttribute('disabled', true);
-      submitButton.classList.add(this._selectors.inactiveButtonClass);
+      this._submitButton.setAttribute('disabled', true);
+      this._submitButton.classList.add(this._selectors.inactiveButtonClass);
     }
   }
 
@@ -67,14 +67,14 @@ export default class FormValidator {
     })
   }
 
-  disableSubmitButton(submitButton) {
-    submitButton.setAttribute('disabled', true);
-    submitButton.classList.add('popup__submit-button_disabled');
+  disableSubmitButton() {
+    this._submitButton.setAttribute('disabled', true);
+    this._submitButton.classList.add('popup__submit-button_disabled');
   }
 
-  enableSubmitButton(submitButton) {
-    submitButton.removeAttribute('disabled');
-    submitButton.classList.remove('popup__submit-button_disabled');
+  enableSubmitButton() {
+    this._submitButton.removeAttribute('disabled');
+    this._submitButton.classList.remove('popup__submit-button_disabled');
   }
   
 }
