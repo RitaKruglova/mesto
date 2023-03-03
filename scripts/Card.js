@@ -1,22 +1,19 @@
-import { openPopup } from "./index.js";
-
 export default class Card {
-  constructor(cardInfo, templateSelector) {
-    this._name = cardInfo.name;
-    this._link = cardInfo.link;
+  constructor(cardInfo, templateSelector, handleOpenPopup) {
     this._card = this._getTemplate(templateSelector);
     this._cardInfo = cardInfo;
+    this._handleOpenPopup = handleOpenPopup;
   }
 
   _getTemplate(templateSelector) {
-    return document.querySelector(templateSelector).content.cloneNode(true);
+    return document.querySelector(templateSelector).content.querySelector('.card').cloneNode(true);
   }
 
   getCard() {
     const cardImage = this._card.querySelector('.card__image');
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
-    this._card.querySelector('.card__title').textContent = this._name;
+    cardImage.src = this._cardInfo.link;
+    cardImage.alt = this._cardInfo.name;
+    this._card.querySelector('.card__title').textContent = this._cardInfo.name;
     this._setEventListeners();
     return this._card;
   }
@@ -24,16 +21,9 @@ export default class Card {
   _setEventListeners() {
     this._card.querySelector('.card__recycle-bin').addEventListener('click', this._deleteCard)
     this._card.querySelector('.card__like').addEventListener('click', this._like);
-    this._card.querySelector('.card__image').addEventListener('click', () => this._openPopup(this._cardInfo));
-  }
-
-  _openPopup(cardInfo) {
-    const popup = document.querySelector('.popup_type_picture');
-    openPopup(popup);
-    const popupImage = popup.querySelector('.popup__image');
-    popupImage.setAttribute('src', cardInfo.link);
-    popupImage.setAttribute('alt', cardInfo.name);
-    popup.querySelector('.popup__image-name').textContent = cardInfo.name;
+    this._card.querySelector('.card__image').addEventListener('click', () => {
+      this._handleOpenPopup(this._cardInfo.name, this._cardInfo.link)
+    });
   }
 
   _deleteCard(event) {
