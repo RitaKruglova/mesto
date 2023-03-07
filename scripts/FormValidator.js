@@ -2,7 +2,7 @@ export default class FormValidator {
   constructor(selectors, form) {
     this._form = form;
     this._selectors = selectors;
-    this._inputs = this._form.querySelectorAll('.popup__input');
+    this._inputs = Array.from(this._form.querySelectorAll('.popup__input'));
     this._submitButton = this._form.querySelector('.popup__submit-button');
   }
 
@@ -56,8 +56,7 @@ export default class FormValidator {
   }
 
   _isAllInputsValid() {
-    const inputs = Array.from(this._inputs);
-    return inputs.every(input => input.validity.valid);
+    return this._inputs.every(input => input.validity.valid);
   }
 
   removeValidationError() {
