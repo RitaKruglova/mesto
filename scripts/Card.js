@@ -3,6 +3,7 @@ export default class Card {
     this._card = this._getTemplate(templateSelector);
     this._cardInfo = cardInfo;
     this._handleOpenPopup = handleOpenPopup;
+    this._cardImage = this._card.querySelector('.card__image');
   }
 
   _getTemplate(templateSelector) {
@@ -10,9 +11,8 @@ export default class Card {
   }
 
   getCard() {
-    const cardImage = this._card.querySelector('.card__image');
-    cardImage.src = this._cardInfo.link;
-    cardImage.alt = this._cardInfo.name;
+    this._cardImage.src = this._cardInfo.link;
+    this._cardImage.alt = this._cardInfo.name;
     this._card.querySelector('.card__title').textContent = this._cardInfo.name;
     this._setEventListeners();
     return this._card;
