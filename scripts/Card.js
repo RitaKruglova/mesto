@@ -19,15 +19,15 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._card.querySelector('.card__recycle-bin').addEventListener('click', this._deleteCard)
+    this._card.querySelector('.card__recycle-bin').addEventListener('click', () => this._deleteCard());
     this._card.querySelector('.card__like').addEventListener('click', this._like);
     this._card.querySelector('.card__image').addEventListener('click', () => {
       this._handleOpenPopup(this._cardInfo.name, this._cardInfo.link)
     });
   }
 
-  _deleteCard(event) {
-    event.target.closest('.card').remove();
+  _deleteCard() {
+    this._card.remove();
   }
 
   _like(event) {
