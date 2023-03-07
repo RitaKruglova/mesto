@@ -35,13 +35,13 @@ export default class FormValidator {
     }
   }
 
-  _showError(input, error, inputErrorClass) {
-    input.classList.add(inputErrorClass);
+  _showError(input, error) {
+    input.classList.add(this._selectors.inputErrorClass);
     error.textContent = input.validationMessage;
   }
 
-  _hideError(input, error, inputErrorClass) {
-    input.classList.remove(inputErrorClass);
+  _hideError(input, error) {
+    input.classList.remove(this._selectors.inputErrorClass);
     error.textContent = '';
   }
 
