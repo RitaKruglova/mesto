@@ -1,0 +1,20 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "Страница создана с целью научиться основам JSю\r На данный момент функционал следующий:\r 1. Нажав на кнопку \"редактировать\" открывается попап, в котором можно изменить имя и род деятельности в профиле.\r 2. Нажав на кнопку \"плюс\" открывается попап, в котором можно добавить новую карточку на страницу.\r 3. Нажав на картинку карточки открывается попап с полным изображением арточки.\r 4. Нажав на сердечко можно поставить лайк карточке.\r 5. Нажав на корзину можно удалить карточку.\r 6. Для каждой формы работает валидация.\r 7. Валидация и создание карточек написано с помощью ООП.\r ## Стек\r HTML, CSS, JavaScript, VSCode, LiveServer\r ## Как запустить проект?\r 1. Скопировать репозиторий:\r ```bash\r git@github.com:RitaKruglova/mesto.git\r ```\r 2. Установить расширение LiveServer в VSCode.\r 3. Открыть index.html в корневой директории.\r 4. Запустить LiveServer.\r 5. Или перейти по ссылке https://ritakruglova.github.io/mesto/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RitaKruglova/mesto.git"
+  },
+  "author": "Rita Kruglova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RitaKruglova/mesto/issues"
+  },
+  "homepage": "https://github.com/RitaKruglova/mesto#readme",
+  "keywords": []
+}
