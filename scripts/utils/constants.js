@@ -46,6 +46,7 @@ const pictureLinkInput = document.querySelector('.popup__input_type_picture-link
 const popups = document.querySelectorAll('.popup');
 const validators = {};
 
+
 export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
