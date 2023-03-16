@@ -48,12 +48,6 @@ export function closePopup(popup) {
   document.removeEventListener('keydown', closePopupByEscape);
 }
 
-export function addInitialCards(initialCards) {
-  initialCards.forEach(item => {
-    cardsContainer.append(createCard(item));
-  })
-}
-
 export function openEditProfilePopup() {
   openPopup(popupEditProfile);
   const formValidator = validators[editFormElement.getAttribute('name')];
@@ -95,7 +89,7 @@ export function enableValidation() {
   });
 }
 
-function handleOpenPopup(name, link) {
+export function handleOpenPopup(name, link) {
   openPopup(picturePopup);
   popupImage.setAttribute('src', link);
   popupImage.setAttribute('alt', name);
