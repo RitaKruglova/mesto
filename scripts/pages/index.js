@@ -1,4 +1,6 @@
 import { initialCards } from '../utils/constants.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
 
 import {
   editButton,
@@ -7,7 +9,8 @@ import {
   plusButton,
   popupAddCard,
   addCardFormElement,
-  validators
+  validators,
+  
 } from '../utils/constants.js';
 
 import {
@@ -15,12 +18,23 @@ import {
   changeProfileInfo,
   addNewCard,
   openEditProfilePopup,
-  addInitialCards,
   closePopupsByOverlay,
   closePopup,
-  openPopup
+  openPopup,
+  handleOpenPopup
 } from '../utils/utils.js';
 
+const cardList = new Section({
+    items: initialCards,
+    renderer: (cardInfo) => {
+      const card = new Card(cardInfo, '#card-template', handleOpenPopup);
+      return card.getCard();
+    }
+  },
+  '.cards'
+);
+
+cardList.renderItems();
 
 enableValidation(); 
 
@@ -41,7 +55,5 @@ plusButton.addEventListener('click', () => {
 });
 
 editFormElement.addEventListener('submit', changeProfileInfo);
-
-addInitialCards(initialCards);
 
 closePopupsByOverlay();
