@@ -1,13 +1,10 @@
 import {
-  // popups,
   cardsContainer,
-  // popupEditProfile,
   validators,
   usernameInput,
   aboutUserInput,
   pictureNameInput,
   pictureLinkInput,
-  // popupAddCard,
   addCardFormElement,
   username,
   aboutUser,
@@ -22,31 +19,6 @@ import Card from '../components/Card.js';
 import Popup from '../components/Popup.js';
 
 
-// export function closePopupsByOverlay() {
-//   popups.forEach(popup => {
-//     popup.addEventListener('click', (event) => {
-//       if (event.target === event.currentTarget) {
-//         closePopup(popup);
-//       }});
-//   });
-// }
-
-// function closePopupByEscape(event) {
-//   if (event.key === 'Escape') {
-//     const popup = document.querySelector('.popup_opened');
-//     closePopup(popup);
-//   }
-// }
-
-// export function openPopup(popup) {
-//   popup.classList.add('popup_opened');
-//   document.addEventListener('keydown', closePopupByEscape);
-// }
-
-// export function closePopup(popup) {
-//   popup.classList.remove('popup_opened');
-//   document.removeEventListener('keydown', closePopupByEscape);
-// }
 export const editProfilePopup = new Popup('.popup_type_edit-profile');
 export const addCardPopup = new Popup('.popup_type_add-card');
 export const picturePopup = new Popup('.popup_type_picture');
