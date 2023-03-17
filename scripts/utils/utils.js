@@ -8,8 +8,6 @@ import {
   addCardFormElement,
   username,
   aboutUser,
-  popupImage,
-  popupImageName,
   validationConfig,
   editFormElement
 } from './constants.js';
@@ -17,11 +15,13 @@ import {
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 
 export const editProfilePopup = new Popup('.popup_type_edit-profile');
 export const addCardPopup = new Popup('.popup_type_add-card');
-export const picturePopup = new Popup('.popup_type_picture');
+
+const popupWithImage = new PopupWithImage('.popup_type_picture');
 
 export function openEditProfilePopup() {
   editProfilePopup.open();
@@ -65,9 +65,6 @@ export function enableValidation() {
 }
 
 export function handleOpenPopup(name, link) {
-  picturePopup.open();
-  popupImage.setAttribute('src', link);
-  popupImage.setAttribute('alt', name);
-  popupImageName.textContent = name;
+  popupWithImage.open(name, link);
 }
 

@@ -58,22 +58,15 @@ export const validationConfig = {
 
 export {
   editButton,
-  popupEditProfile,
   editFormElement,
   usernameInput,
   aboutUserInput,
   username,
   aboutUser,
-  resetButtons,
   plusButton,
-  popupAddCard,
   cardsContainer,
-  picturePopup,
-  popupImage,
-  popupImageName,
   addCardFormElement,
   pictureNameInput,
   pictureLinkInput,
-  popups,
   validators
 }
