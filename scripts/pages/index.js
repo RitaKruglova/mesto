@@ -31,8 +31,6 @@ const cardList = new Section({
   '.cards'
 );
 
-
-
 cardList.renderItems();
 
 enableValidation(); 
