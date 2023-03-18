@@ -27,23 +27,16 @@ export const initialCards = [
 
 const container = document.querySelector('.content');
 const editButton = container.querySelector('.profile__edit-button');
-const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const editFormElement = document.querySelector('.popup__form_type_edit-profile');
 const usernameInput = editFormElement.querySelector('.popup__input_type_username');
 const aboutUserInput = editFormElement.querySelector('.popup__input_type_about-user');
 const username = container.querySelector('.profile__name');
 const aboutUser = container.querySelector('.profile__description');
-const resetButtons = document.querySelectorAll('.popup__reset-button');
 const plusButton = container.querySelector('.profile__add-button');
-const popupAddCard = document.querySelector('.popup_type_add-card');
 const cardsContainer = container.querySelector('.cards');
-const picturePopup = document.querySelector('.popup_type_picture');
-const popupImage = document.querySelector('.popup__image');
-const popupImageName = document.querySelector('.popup__image-name');
 const addCardFormElement = document.querySelector('.popup__form_type_add-card');
 const pictureNameInput = document.querySelector('.popup__input_type_picture-name');
 const pictureLinkInput = document.querySelector('.popup__input_type_picture-link');
-const popups = document.querySelectorAll('.popup');
 const validators = {};
 
 

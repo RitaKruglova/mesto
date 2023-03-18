@@ -6,8 +6,6 @@ import {
   pictureNameInput,
   pictureLinkInput,
   addCardFormElement,
-  username,
-  aboutUser,
   validationConfig,
   editFormElement
 } from './constants.js';
@@ -16,20 +14,28 @@ import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
 
-export const editProfilePopup = new Popup('.popup_type_edit-profile');
-export const addCardPopup = new Popup('.popup_type_add-card');
+export const editProfilePopup = new PopupWithForm('.popup_type_edit-profile');
+export const addCardPopup = new PopupWithForm('.popup_type_add-card');
 
 const popupWithImage = new PopupWithImage('.popup_type_picture');
+
+const userInfo = new UserInfo({
+  usernameSelector: '.profile__name',
+  aboutUserSelector: '.profile__description'
+});
 
 export function openEditProfilePopup() {
   editProfilePopup.open();
   const formValidator = validators[editFormElement.getAttribute('name')];
   formValidator.removeValidationError();
   formValidator.enableSubmitButton();
-  usernameInput.value = username.textContent;
-  aboutUserInput.value = aboutUser.textContent;
+  const info = userInfo.getUserInfo();
+  usernameInput.value = info.profileName;
+  aboutUserInput.value = info.profileDescription;
 }
 
 export function addNewCard(event) {
@@ -45,8 +51,10 @@ export function addNewCard(event) {
 
 export function changeProfileInfo(event) {
   event.preventDefault();
-  username.textContent = usernameInput.value;
-  aboutUser.textContent = aboutUserInput.value;
+  userInfo.setUserInfo({
+    username: usernameInput.value,
+    userDescription: aboutUserInput.value
+  })
   editProfilePopup.close();
 }
 
