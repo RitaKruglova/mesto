@@ -4,7 +4,8 @@
   "description": "Страница создана с целью научиться основам JSю\r На данный момент функционал следующий:\r 1. Нажав на кнопку \"редактировать\" открывается попап, в котором можно изменить имя и род деятельности в профиле.\r 2. Нажав на кнопку \"плюс\" открывается попап, в котором можно добавить новую карточку на страницу.\r 3. Нажав на картинку карточки открывается попап с полным изображением арточки.\r 4. Нажав на сердечко можно поставить лайк карточке.\r 5. Нажав на корзину можно удалить карточку.\r 6. Для каждой формы работает валидация.\r 7. Валидация и создание карточек написано с помощью ООП.\r ## Стек\r HTML, CSS, JavaScript, VSCode, LiveServer\r ## Как запустить проект?\r 1. Скопировать репозиторий:\r ```bash\r git@github.com:RitaKruglova/mesto.git\r ```\r 2. Установить расширение LiveServer в VSCode.\r 3. Открыть index.html в корневой директории.\r 4. Запустить LiveServer.\r 5. Или перейти по ссылке https://ritakruglova.github.io/mesto/",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,23 @@
     "url": "https://github.com/RitaKruglova/mesto/issues"
   },
   "homepage": "https://github.com/RitaKruglova/mesto#readme",
-  "keywords": []
+  "keywords": [],
+  "devDependencies": {
+    "@babel/core": "^7.21.3",
+    "@babel/preset-env": "^7.20.2",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.3",
+    "cssnano": "^5.1.15",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.5",
+    "postcss-loader": "^7.1.0",
+    "webpack": "^5.76.2",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.1"
+  },
+  "dependencies": {
+    "core-js": "^3.29.1"
+  }
 }

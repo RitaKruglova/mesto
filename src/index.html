@@ -7,16 +7,16 @@
   <meta name="description" content="Место">
   <meta name="keywords" content="Место, Токио, Аокигахара, Киото">
   <meta name="author" content="Маргарита Круглова">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Место</title>
 </head>
 <body class="page">
   <header class="header">
-    <img src="./images/logo.svg" alt="Логотип Место" class="header__logo">
+    <img src="<%=require('./images/logo.svg')%>" alt="Логотип Место" class="header__logo">
   </header>
   <main class="content">
     <section class="profile">
-      <img src="./images/yuno.png" alt="Аватар" class="profile__avatar">
+      <img src="<%=require('./images/yuno.png')%>" alt="Аватар" class="profile__avatar">
       <div class="profile__info">
         <div class="profile__flex-row">
           <h1 id="profileName" class="profile__name">Юно Гасай</h1>
@@ -115,6 +115,6 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./scripts/pages/index.js"></script>
+  <!-- <script type="module" src="./scripts/pages/index.js"></script> -->
 </body>
 </html>
