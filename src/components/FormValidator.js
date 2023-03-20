@@ -47,11 +47,9 @@ export default class FormValidator {
 
   _toggleSubmitButton() {
     if (this._isAllInputsValid()) {
-      this._submitButton.removeAttribute('disabled');
-      this._submitButton.classList.remove(this._selectors.inactiveButtonClass);
+      this.enableSubmitButton();
     } else {
-      this._submitButton.setAttribute('disabled', true);
-      this._submitButton.classList.add(this._selectors.inactiveButtonClass);
+      this.disableSubmitButton();
     }
   }
 
@@ -60,20 +58,21 @@ export default class FormValidator {
   }
 
   removeValidationError() {
-    this._form.querySelectorAll(this._selectors.inputSelector).forEach(input => {
+    this._inputs.forEach(input => {
       const error = input.nextElementSibling;
       this._hideError(input, error, this._selectors.inputErrorClass);
+      this.enableSubmitButton();
     })
   }
 
   disableSubmitButton() {
     this._submitButton.setAttribute('disabled', true);
-    this._submitButton.classList.add('popup__submit-button_disabled');
+    this._submitButton.classList.add(this._selectors.inactiveButtonClass);
   }
 
   enableSubmitButton() {
     this._submitButton.removeAttribute('disabled');
-    this._submitButton.classList.remove('popup__submit-button_disabled');
+    this._submitButton.classList.remove(this._selectors.inactiveButtonClass);
   }
   
 }
