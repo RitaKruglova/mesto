@@ -31,7 +31,6 @@ export function openEditProfilePopup() {
   editProfilePopup.open();
   const formValidator = validators[editFormElement.getAttribute('name')];
   formValidator.removeValidationError();
-  formValidator.enableSubmitButton();
   const info = userInfo.getUserInfo();
   usernameInput.value = info.profileName;
   aboutUserInput.value = info.profileDescription;
