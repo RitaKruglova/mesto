@@ -24,7 +24,6 @@ import {
 } from '../utils/utils.js';
 
 const cardList = new Section({
-    items: initialCards,
     renderer: (cardInfo) => {
       const card = new Card(cardInfo, '#card-template', handleOpenPopup);
       return card.getCard();
@@ -33,7 +32,9 @@ const cardList = new Section({
   '.cards'
 );
 
-cardList.renderItems();
+cardList.renderItems(initialCards).forEach(card => {
+  cardList.addItem(card);
+})
 
 enableValidation(); 
 
