@@ -17,10 +17,14 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 
 
-export const editProfilePopup = new PopupWithForm('.popup_type_edit-profile');
-export const addCardPopup = new PopupWithForm('.popup_type_add-card');
+export const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', changeProfileInfo);
+editProfilePopup.setEventListeners();
+
+export const addCardPopup = new PopupWithForm('.popup_type_add-card', addNewCard);
+addCardPopup.setEventListeners();
 
 const popupWithImage = new PopupWithImage('.popup_type_picture');
+popupWithImage.setEventListeners();
 
 const userInfo = new UserInfo({
   usernameSelector: '.profile__name',
@@ -36,22 +40,18 @@ export function openEditProfilePopup() {
   aboutUserInput.value = info.profileDescription;
 }
 
-export function addNewCard(event) {
+export function addNewCard(event, inputValues) {
   event.preventDefault();
-  const cardInfo = {
-    name: pictureNameInput.value,
-    link: pictureLinkInput.value
-  }
-  cardsContainer.prepend(createCard(cardInfo));
+  cardsContainer.prepend(createCard(inputValues));
   addCardPopup.close();
   addCardFormElement.reset();
 }
 
-export function changeProfileInfo(event) {
+export function changeProfileInfo(event, inputValues) {
   event.preventDefault();
   userInfo.setUserInfo({
-    username: usernameInput.value,
-    userDescription: aboutUserInput.value
+    fullname: inputValues.fullname,
+    about: inputValues.about
   })
   editProfilePopup.close();
 }

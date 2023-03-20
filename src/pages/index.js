@@ -39,7 +39,7 @@ enableValidation();
 
 editButton.addEventListener('click', openEditProfilePopup);
 
-addCardFormElement.addEventListener('submit', addNewCard);
+// addCardFormElement.addEventListener('submit', addNewCard);
 
 plusButton.addEventListener('click', () => {
   addCardFormElement.reset();
@@ -49,5 +49,5 @@ plusButton.addEventListener('click', () => {
   formValidator.disableSubmitButton();
 });
 
-editFormElement.addEventListener('submit', changeProfileInfo);
+// editFormElement.addEventListener('submit', changeProfileInfo);
 
