@@ -12,7 +12,11 @@ export default class Section {
     return array;
   }
 
-  addItem(item) {
-    this._container.append(item);
+  addItem(item, isAppend = false) {
+    if (isAppend) {
+      this._container.append(item);
+    } else {
+      this._container.prepend(item);
+    }
   }
 }
