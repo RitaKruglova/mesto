@@ -33,11 +33,9 @@ const aboutUserInput = editFormElement.querySelector('.popup__input_type_about-u
 const username = container.querySelector('.profile__name');
 const aboutUser = container.querySelector('.profile__description');
 const plusButton = container.querySelector('.profile__add-button');
-const cardsContainer = container.querySelector('.cards');
 const addCardFormElement = document.querySelector('.popup__form_type_add-card');
 const pictureNameInput = document.querySelector('.popup__input_type_picture-name');
 const pictureLinkInput = document.querySelector('.popup__input_type_picture-link');
-const validators = {};
 
 
 export const validationConfig = {
@@ -57,9 +55,7 @@ export {
   username,
   aboutUser,
   plusButton,
-  cardsContainer,
   addCardFormElement,
   pictureNameInput,
   pictureLinkInput,
-  validators
 }

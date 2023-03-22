@@ -5,11 +5,9 @@ export default class Section {
   }
 
   renderItems(initialArray) {
-    const array = [];
     initialArray.forEach(item => {
-      array.push(this._renderer(item));
+      this._renderer(item);
     });
-    return array;
   }
 
   addItem(item, isAppend = false) {

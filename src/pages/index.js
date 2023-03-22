@@ -13,11 +13,9 @@ import {
   editButton,
   plusButton,
   addCardFormElement,
-  validators,
   usernameInput,
   aboutUserInput,
   editFormElement,
-  cardsContainer,
   validationConfig,
 } from '../utils/constants.js';
 
@@ -41,15 +39,9 @@ function generateCard(cardInfo) {
   return card.getCard();
 }
 
-function createCard(cardInfo) {
-  const card = new Card(cardInfo, '#card-template', handleOpenPopup);
-  return card.getCard();
-}
-
-
 const cardList = new Section({
     renderer: (cardInfo) => {
-      return generateCard(cardInfo);
+      cardList.addItem(generateCard(cardInfo), true);
     }
   },
   '.cards'
@@ -69,7 +61,7 @@ function openEditProfilePopup() {
 
 function addNewCard(event, inputValues) {
   event.preventDefault();
-  cardList.addItem(createCard(inputValues));
+  cardList.addItem(generateCard(inputValues));
   addCardPopup.close();
   addCardFormElement.reset();
 }
@@ -92,9 +84,7 @@ function handleOpenPopup(name, link) {
   popupWithImage.open(name, link);
 }
 
-cardList.renderItems(initialCards).forEach(card => {
-  cardList.addItem(card, true);
-});
+cardList.renderItems(initialCards);
 
 enableValidation(); 
 
