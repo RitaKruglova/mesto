@@ -5,6 +5,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._cardImage = this._card.querySelector('.card__image');
     this._handleRecycleBinClick  = handleRecycleBinClick;
+
   }
 
   _getTemplate(templateSelector) {
@@ -20,7 +21,9 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._card.querySelector('.card__recycle-bin').addEventListener('click', () => this._handleRecycleBinClick());
+    this._card.querySelector('.card__recycle-bin').addEventListener('click', () => {
+      this._handleRecycleBinClick(this._deleteCard.bind(this))
+    });
     this._card.querySelector('.card__like').addEventListener('click', this._like);
     this._card.querySelector('.card__image').addEventListener('click', () => {
       this._handleCardClick(this._cardInfo.name, this._cardInfo.link)
