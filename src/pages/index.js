@@ -18,6 +18,8 @@ import {
   editFormElement,
   validationConfig,
   avatar,
+  username,
+  aboutUser
 } from '../utils/constants.js';
 import PopupWithConfirm from '../components/PopupWithConfirm';
 
@@ -111,6 +113,8 @@ function handleOpenPopup(name, link) {
 
 userInfo.getUserInfo().then(userInfo => {
   avatar.src = userInfo.avatar;
+  username.textContent = userInfo.profileName;
+  aboutUser.textContent = userInfo.profileDescription;
 })
 
 
