@@ -7,7 +7,6 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
-import Popup from '../components/Popup.js'
 
 
 import {
@@ -19,10 +18,10 @@ import {
   editFormElement,
   validationConfig,
   avatar,
-  recycleBinButton
 } from '../utils/constants.js';
+import PopupWithConfirm from '../components/PopupWithConfirm';
 
-const deleteCardPopup = new Popup('.popup_type_delete-card');
+const deleteCardPopup = new PopupWithConfirm('.popup_type_delete-card', '.popup__confirm-button', );
 deleteCardPopup.setEventListeners();
 
 const editProfilePopup = new PopupWithForm('.popup_type_edit-profile', changeProfileInfo);
@@ -57,8 +56,8 @@ const editFormValidator = new FormValidator(validationConfig, editFormElement);
 
 const addCardFormValidator = new FormValidator(validationConfig, addCardFormElement);
 
-function openDeleteCardPopup() {
-  deleteCardPopup.open();
+function openDeleteCardPopup(deleteCard) {
+  deleteCardPopup.open(deleteCard);
 }
 
 function openEditProfilePopup() {
@@ -73,7 +72,6 @@ function openEditProfilePopup() {
 
 function addNewCard(event, inputValues) {
   event.preventDefault();
-  cardList.addItem(generateCard(inputValues));
   addCardPopup.close();
   addCardFormElement.reset();
   fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', {
@@ -87,6 +85,10 @@ function addNewCard(event, inputValues) {
       link: inputValues.link
     })
   })
+  .then(res => res.json())
+  .then(cardInfo => {
+      cardList.addItem(generateCard(cardInfo));
+    })
 }
 
 function changeProfileInfo(event, inputValues) {

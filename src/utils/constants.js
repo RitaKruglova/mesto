@@ -37,7 +37,7 @@ const addCardFormElement = document.querySelector('.popup__form_type_add-card');
 const pictureNameInput = document.querySelector('.popup__input_type_picture-name');
 const pictureLinkInput = document.querySelector('.popup__input_type_picture-link');
 const avatar = document.querySelector('.profile__avatar');
-const recycleBinButton = document.querySelector('.card__recycle-bin')
+const deleteCardButton = document.querySelector('.popup__submit-button_place_delete-card');
 
 
 export const validationConfig = {
@@ -61,5 +61,5 @@ export {
   pictureNameInput,
   pictureLinkInput,
   avatar,
-  recycleBinButton
+  deleteCardButton
 }

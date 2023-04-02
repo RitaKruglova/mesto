@@ -39,4 +39,4 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image-name/popup__image-name.css);
 @import url(../blocks/popup/__container/_place/popup__container_place_delete-card.css);
-@import url(../blocks/popup/__submit-button/_place/popup__submit-button_place_delete-card.css);
+@import url(../blocks/popup/__confirm-button/popup__confirm-button.css);
