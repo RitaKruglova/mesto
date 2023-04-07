@@ -6,6 +6,11 @@
   object-fit: cover;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+  position: relative;
+}
+
+.profile__avatar:hover{
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

@@ -15,7 +15,10 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img id="avatar" src="" alt="Аватар" class="profile__avatar">
+      <div class="profile__avatar-container">
+        <img id="avatar" src="" alt="Аватар" class="profile__avatar">
+        <img src="<%=require('./images/pencil.svg')%>" alt="Редактировать аватар" class="profile__avatar-overlay">
+      </div>
       <div class="profile__info">
         <div class="profile__flex-row">
           <h1 id="profileName" class="profile__name"></h1>
@@ -109,6 +112,26 @@
       <button type="button" class="popup__reset-button popup__reset-button_place_delete-card" aria-label="Отменить"></button>
       <h3 class="popup__title">Вы уверены?</h3>
       <button type="button" class="popup__confirm-button">Да</button>
+    </div>
+  </div>
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <button type="button" class="popup__reset-button popup__reset-button_place_avatar" aria-label="Отменить"></button>
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form popup__form_type_avatar" name="avatar-form" novalidate>
+        <fieldset class="popup__info">
+          <input
+            id="input-link-avatar"
+            type="url"
+            name="avatar-link"
+            class="popup__input popup__input_type_avatar"
+            placeholder="Ссылка на картинку"
+            required
+          >
+          <span id="input-link-avatar-error" class="popup__error popup__error_visible"></span>
+        </fieldset>
+        <button type="submit" class="popup__submit-button popup__submit-button_disabled" disabled>Сохранить</button>
+      </form>
     </div>
   </div>
   <template id="card-template">
