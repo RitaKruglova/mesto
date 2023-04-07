@@ -1,12 +1,13 @@
 import './index.css'
 
-// import { initialCards } from '../utils/constants.js';
+
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api';
 
 
 import {
@@ -19,9 +20,14 @@ import {
   validationConfig,
   avatar,
   username,
-  aboutUser
+  aboutUser,
+  changeAvatarFormElement,
+  avatarInput,
+  avatarButton
 } from '../utils/constants.js';
 import PopupWithConfirm from '../components/PopupWithConfirm';
+
+const api = new Api();
 
 const deleteCardPopup = new PopupWithConfirm('.popup_type_delete-card', '.popup__confirm-button', );
 deleteCardPopup.setEventListeners();
@@ -38,28 +44,51 @@ popupWithImage.setEventListeners();
 const userInfo = new UserInfo({
   usernameSelector: '.profile__name',
   aboutUserSelector: '.profile__description',
-  avatarSelector: '.profile__avatar'
+  avatarSelector: '.profile__avatar',
+  api: api
 });
 
+
 function generateCard(cardInfo) {
-  const card = new Card(cardInfo, '#card-template', handleOpenPopup, openDeleteCardPopup);
+  const card = new Card(cardInfo, '#card-template', handleOpenPopup, openDeleteCardPopup, api);
   return card.getCard();
 }
 
 const cardList = new Section({
-    renderer: (cardInfo) => {
-      cardList.addItem(generateCard(cardInfo), true);
-    }
-  },
-  '.cards'
+  renderer: (cardInfo) => {
+    cardList.addItem(generateCard(cardInfo), true);
+  }
+},
+'.cards'
 );
+
+
+api.getInitialCards()
+  .then(initialCards => {
+    cardList.renderItems(initialCards);
+  })
 
 const editFormValidator = new FormValidator(validationConfig, editFormElement);
 
 const addCardFormValidator = new FormValidator(validationConfig, addCardFormElement);
 
+const changeAvatarFormValidator = new FormValidator(validationConfig, changeAvatarFormElement);
+
+const avatarPopup = new PopupWithForm('.popup_type_avatar', changeAvatar);
+avatarPopup.setEventListeners();
+
 function openDeleteCardPopup(deleteCard) {
   deleteCardPopup.open(deleteCard);
+}
+
+function changeAvatar(event) {
+  event.preventDefault();
+  
+  
+  avatar.src = avatarInput.value;
+
+  // avatarPopup.close();
+  return api.changeAvatar(avatarInput.value);
 }
 
 function openEditProfilePopup() {
@@ -74,37 +103,30 @@ function openEditProfilePopup() {
 
 function addNewCard(event, inputValues) {
   event.preventDefault();
-  addCardPopup.close();
   addCardFormElement.reset();
-  fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', {
-    method: 'POST',
-    headers: {
-      authorization: 'b2c416ac-9733-4a5c-9da0-2148e2adbd32',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: inputValues.name,
-      link: inputValues.link
-    })
-  })
-  .then(res => res.json())
+  
+  // addCardPopup.close();
+  return api.addNewCard(inputValues)
   .then(cardInfo => {
-      cardList.addItem(generateCard(cardInfo));
-    })
+      return cardList.addItem(generateCard(cardInfo));
+    });
 }
 
 function changeProfileInfo(event, inputValues) {
   event.preventDefault();
-  userInfo.setUserInfo({
+  
+  // editProfilePopup.close();
+  return userInfo.setUserInfo({
     fullname: inputValues.fullname,
     about: inputValues.about
   })
-  editProfilePopup.close();
 }
 
 function enableValidation() {
   editFormValidator.enableValidation();
   addCardFormValidator.enableValidation();
+  changeAvatarFormValidator.enableValidation();
+  
 }
 
 function handleOpenPopup(name, link) {
@@ -129,7 +151,12 @@ plusButton.addEventListener('click', () => {
   addCardFormValidator.disableSubmitButton();
 });
 
-
+avatarButton.addEventListener('click', () => {
+  changeAvatarFormElement.reset();
+  avatarPopup.open();
+  changeAvatarFormValidator.removeValidationError();
+  changeAvatarFormValidator.disableSubmitButton();
+})
 // fetch('https://mesto.nomoreparties.co/v1/cohort-62/users/me/avatar', {
 //   headers: {
 //     authorization: 'b2c416ac-9733-4a5c-9da0-2148e2adbd32',
@@ -142,13 +169,5 @@ plusButton.addEventListener('click', () => {
 // })
 
 
-fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', {
-  headers: {
-    authorization: 'b2c416ac-9733-4a5c-9da0-2148e2adbd32',
-  }
-})
-  .then(res => res.json())
-  .then(initialCards => {
-    cardList.renderItems(initialCards);
-  })
+
 
