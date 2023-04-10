@@ -14,8 +14,6 @@ import {
   editButton,
   plusButton,
   addCardFormElement,
-  usernameInput,
-  aboutUserInput,
   editFormElement,
   validationConfig,
   avatar,
@@ -27,7 +25,15 @@ import {
 } from '../utils/constants.js';
 import PopupWithConfirm from '../components/PopupWithConfirm';
 
-const api = new Api();
+let userId;
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-62',
+  headers: {
+    authorization: 'b2c416ac-9733-4a5c-9da0-2148e2adbd32',
+    'Content-Type': 'application/json'
+  }
+});
 
 const deleteCardPopup = new PopupWithConfirm('.popup_type_delete-card', '.popup__confirm-button', );
 deleteCardPopup.setEventListeners();
@@ -50,7 +56,7 @@ const userInfo = new UserInfo({
 
 
 function generateCard(cardInfo) {
-  const card = new Card(cardInfo, '#card-template', handleOpenPopup, openDeleteCardPopup, api);
+  const card = new Card(cardInfo, '#card-template', handleOpenPopup, openDeleteCardPopup, api, userId);
   return card.getCard();
 }
 
@@ -62,10 +68,13 @@ const cardList = new Section({
 '.cards'
 );
 
-
-api.getInitialCards()
-  .then(initialCards => {
-    cardList.renderItems(initialCards);
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    cardList.renderItems(cards);
+    userId = userData._id;
+    avatar.src = userData.avatar;
+    username.textContent = userData.name;
+    aboutUser.textContent = userData.about;
   })
 
 const editFormValidator = new FormValidator(validationConfig, editFormElement);
@@ -82,30 +91,21 @@ function openDeleteCardPopup(deleteCard) {
 }
 
 function changeAvatar(event) {
-  event.preventDefault();
-  
-  
-  avatar.src = avatarInput.value;
-
-  // avatarPopup.close();
-  return api.changeAvatar(avatarInput.value);
+  event.preventDefault(); 
+  return api.changeAvatar(avatarInput.value)
+    .then(data => {
+      userInfo.setUserInfo(data);
+    });
 }
 
 function openEditProfilePopup() {
   editProfilePopup.open();
   editFormValidator.removeValidationError();
-  const info = userInfo.getUserInfo();
-  info.then(userInfo => {
-    usernameInput.value = userInfo.profileName;
-    aboutUserInput.value = userInfo.profileDescription;
-  })
+  editProfilePopup.setInputValues(userInfo.getUserInfo());
 }
 
 function addNewCard(event, inputValues) {
   event.preventDefault();
-  addCardFormElement.reset();
-  
-  // addCardPopup.close();
   return api.addNewCard(inputValues)
   .then(cardInfo => {
       return cardList.addItem(generateCard(cardInfo));
@@ -114,12 +114,14 @@ function addNewCard(event, inputValues) {
 
 function changeProfileInfo(event, inputValues) {
   event.preventDefault();
-  
-  // editProfilePopup.close();
-  return userInfo.setUserInfo({
+  return api.setUserInfo({
     fullname: inputValues.fullname,
     about: inputValues.about
   })
+    .then(data => {
+      userInfo.setUserInfo(data);
+      return {}
+    });
 }
 
 function enableValidation() {
@@ -133,40 +135,22 @@ function handleOpenPopup(name, link) {
   popupWithImage.open(name, link);
 }
 
-userInfo.getUserInfo().then(userInfo => {
-  avatar.src = userInfo.avatar;
-  username.textContent = userInfo.profileName;
-  aboutUser.textContent = userInfo.profileDescription;
-})
-
-
 enableValidation(); 
 
 editButton.addEventListener('click', openEditProfilePopup);
 
 plusButton.addEventListener('click', () => {
-  addCardFormElement.reset();
   addCardPopup.open();
   addCardFormValidator.removeValidationError();
   addCardFormValidator.disableSubmitButton();
 });
 
 avatarButton.addEventListener('click', () => {
-  changeAvatarFormElement.reset();
   avatarPopup.open();
   changeAvatarFormValidator.removeValidationError();
   changeAvatarFormValidator.disableSubmitButton();
 })
-// fetch('https://mesto.nomoreparties.co/v1/cohort-62/users/me/avatar', {
-//   headers: {
-//     authorization: 'b2c416ac-9733-4a5c-9da0-2148e2adbd32',
-//     'Content-Type': 'application/json'
-//   },
-//   method: 'PATCH',
-//   body: JSON.stringify({
-//     avatar: 'https://i.pinimg.com/564x/d1/67/5a/d1675a1dec27a168d581155bf9f239c9.jpg'
-//   })
-// })
+
 
 
 

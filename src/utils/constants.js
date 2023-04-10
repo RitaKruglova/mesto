@@ -3,8 +3,6 @@
 const container = document.querySelector('.content');
 const editButton = container.querySelector('.profile__edit-button');
 const editFormElement = document.querySelector('.popup__form_type_edit-profile');
-const usernameInput = editFormElement.querySelector('.popup__input_type_username');
-const aboutUserInput = editFormElement.querySelector('.popup__input_type_about-user');
 const username = container.querySelector('.profile__name');
 const aboutUser = container.querySelector('.profile__description');
 const plusButton = container.querySelector('.profile__add-button');
@@ -30,8 +28,6 @@ export const validationConfig = {
 export {
   editButton,
   editFormElement,
-  usernameInput,
-  aboutUserInput,
   username,
   aboutUser,
   plusButton,
