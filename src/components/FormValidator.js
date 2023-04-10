@@ -61,7 +61,6 @@ export default class FormValidator {
     this._inputs.forEach(input => {
       const error = input.nextElementSibling;
       this._hideError(input, error, this._selectors.inputErrorClass);
-      this.enableSubmitButton();
     })
   }
 

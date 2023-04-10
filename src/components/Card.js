@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(cardInfo, templateSelector, handleCardClick, handleRecycleBinClick, api) {
+  constructor(cardInfo, templateSelector, handleCardClick, handleRecycleBinClick, api, userId) {
     this._card = this._getTemplate(templateSelector);
     this._cardInfo = cardInfo;
     this._handleCardClick = handleCardClick;
@@ -9,6 +9,7 @@ export default class Card {
     this._cardLike = this._card.querySelector('.card__like');
     this._api = api;
     this._recycleBin = this._card.querySelector('.card__recycle-bin');
+    this._userId = userId;
   }
 
   _getTemplate(templateSelector) {
@@ -19,18 +20,15 @@ export default class Card {
     this._cardImage.src = this._cardInfo.link;
     this._cardImage.alt = this._cardInfo.name;
     this._appendLikes();
-    this._api.getMyName()
-      .then(data => {
-        return data.name;
-      })
-      .then(name => {
-      const isIOwner = this._cardInfo.likes.some(owner => {
-        return owner.name === name;
-      })
-      if (isIOwner) {
-        this._cardLike.classList.add('card__like_active');
-      }
+    const isLiked = this._cardInfo.likes.some(owner => {
+      return owner._id === this._userId;
     })
+    if (isLiked) {
+      this._cardLike.classList.add('card__like_active');
+    }
+    if (this._cardInfo.owner._id !== this._userId) {
+      this._recycleBin.remove();
+    }
     this._card.querySelector('.card__title').textContent = this._cardInfo.name;
     this._setEventListeners();
     return this._card;
@@ -58,22 +56,25 @@ export default class Card {
 
   _deleteCard() {
     this._card.remove();
-    this._api.deleteCard(this._cardInfo._id);
+    return this._api.deleteCard(this._cardInfo._id);
   }
 
   _like() {
     this._cardLike.classList.toggle('card__like_active');
-    const counter = Number(this._cardLikeCounter.textContent)
     if (this._cardLike.classList.contains('card__like_active')) {
-      this._api.putLike(this._cardInfo._id);
-      this._cardLikeCounter.textContent = counter + 1;
+      this._api.putLike(this._cardInfo._id)
+        .then(data => {
+          this._cardLikeCounter.textContent = data.likes.length;
+        });
     } else {
-      this._api.deleteLike(this._cardInfo._id);
-      if (counter >= 2) {
-        this._cardLikeCounter.textContent = counter - 1;
-      } else {
-        this._cardLikeCounter.textContent = '';
-      }
+      this._api.deleteLike(this._cardInfo._id)
+        .then(data => {
+          if (data.likes.length >= 2) {
+            this._cardLikeCounter.textContent = data.likes.length;
+          } else {
+            this._cardLikeCounter.textContent = '';
+          }
+        });
     }
   }
 }

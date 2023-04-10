@@ -18,6 +18,12 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  setInputValues(data) {
+    this._inputs.forEach((input) => {
+      input.value = data[input.id.replace('Input', '')];
+    });
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (event) => {
@@ -25,6 +31,8 @@ export default class PopupWithForm extends Popup {
       this._callbackSubmitForm(event, this._getInputValues())
         .then(() => {
           this.close();
+        })
+        .finally(() => {
           this._submitButton.textContent = this._submitButtonName;
         })
     });

@@ -1,14 +1,13 @@
 export default class Api {
-  constructor() {
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
   _fetch(url, method = 'GET', body = null) {
-    return fetch(url, {
+    return fetch(`${this._baseUrl}${url}`, {
       method,
-      headers: {
-        authorization: 'b2c416ac-9733-4a5c-9da0-2148e2adbd32',
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body
     })
     .then(res => {
@@ -18,34 +17,33 @@ export default class Api {
 
       return Promise.reject(`Ошибка: ${res.status}`);
     })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   getInitialCards() {
-    return this._fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards');
+    return this._fetch(`/cards`);
   }
 
   putLike(cardId) {
-    this._fetch(`https://mesto.nomoreparties.co/v1/cohort-62/cards/${cardId}/likes`, 'PUT');
+    return this._fetch(`/cards/${cardId}/likes`, 'PUT');
   }
 
   deleteLike(cardId) {
-    this._fetch(`https://mesto.nomoreparties.co/v1/cohort-62/cards/${cardId}/likes`, 'DELETE');
+    return this._fetch(`/cards/${cardId}/likes`, 'DELETE');
   }
 
   deleteCard(cardId) {
-    this._fetch(`https://mesto.nomoreparties.co/v1/cohort-62/cards/${cardId}`, 'DELETE');
-  }
-
-  getMyName() {
-    return this._fetch('https://nomoreparties.co/v1/cohort-62/users/me');
+    return this._fetch(`/cards/${cardId}`, 'DELETE');
   }
 
   getUserInfo() {
-    return this._fetch('https://nomoreparties.co/v1/cohort-62/users/me');
+    return this._fetch(`/users/me`);
   }
 
   setUserInfo({ fullname, about }) {
-    return this._fetch('https://mesto.nomoreparties.co/v1/cohort-62/users/me', 'PATCH',
+    return this._fetch(`/users/me`, 'PATCH',
       JSON.stringify({
         name: fullname,
         about: about
@@ -54,7 +52,7 @@ export default class Api {
   }
 
   addNewCard(inputValues) {
-    return this._fetch('https://mesto.nomoreparties.co/v1/cohort-62/cards', 'POST',
+    return this._fetch(`/cards`, 'POST',
       JSON.stringify({
         name: inputValues.name,
         link: inputValues.link
@@ -63,7 +61,7 @@ export default class Api {
   }
 
   changeAvatar(link) {
-    return this._fetch('https://mesto.nomoreparties.co/v1/cohort-62/users/me/avatar', 'PATCH',
+    return this._fetch(`/users/me/avatar`, 'PATCH',
       JSON.stringify({
         avatar: link
       })
