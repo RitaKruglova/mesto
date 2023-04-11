@@ -76,6 +76,9 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
     username.textContent = userData.name;
     aboutUser.textContent = userData.about;
   })
+  .catch(err => {
+    console.log(err);
+  })
 
 const editFormValidator = new FormValidator(validationConfig, editFormElement);
 
