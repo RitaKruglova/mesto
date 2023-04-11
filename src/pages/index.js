@@ -98,6 +98,9 @@ function changeAvatar(event) {
   return api.changeAvatar(avatarInput.value)
     .then(data => {
       userInfo.setUserInfo(data);
+    })
+    .catch(err => {
+      console.log(err)
     });
 }
 
@@ -112,7 +115,10 @@ function addNewCard(event, inputValues) {
   return api.addNewCard(inputValues)
   .then(cardInfo => {
       return cardList.addItem(generateCard(cardInfo));
-    });
+    })
+  .catch(err => {
+    console.log(err)
+  })
 }
 
 function changeProfileInfo(event, inputValues) {
@@ -124,6 +130,9 @@ function changeProfileInfo(event, inputValues) {
     .then(data => {
       userInfo.setUserInfo(data);
       return {}
+    })
+    .catch(err => {
+      console.log(err)
     });
 }
 

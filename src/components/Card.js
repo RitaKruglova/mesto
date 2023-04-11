@@ -58,6 +58,9 @@ export default class Card {
       .then(() => {
         this._card.remove();
       })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   _like() {
@@ -70,12 +73,18 @@ export default class Card {
           } else {
             this._cardLikeCounter.textContent = '';
           }
+        })
+        .catch(err => {
+          console.log(err)
         });
     } else {
       this._api.putLike(this._cardInfo._id)
         .then(data => {
           this._cardLikeCounter.textContent = data.likes.length;
           this._cardLike.classList.add('card__like_active');
+        })
+        .catch(err => {
+          console.log(err)
         });
     }
   }
