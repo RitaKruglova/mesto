@@ -56,8 +56,8 @@ const userInfo = new UserInfo({
 
 
 function generateCard(cardInfo) {
-  const card = new Card(cardInfo, '#card-template', handleOpenPopup, openDeleteCardPopup, api, userId);
-  return card.getCard();
+  const card = new Card(cardInfo, '#card-template', handleOpenPopup, openDeleteCardPopup, api);
+  return card.getCard(userId);
 }
 
 const cardList = new Section({
@@ -70,8 +70,8 @@ const cardList = new Section({
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, cards]) => {
-    cardList.renderItems(cards);
     userId = userData._id;
+    cardList.renderItems(cards);
     avatar.src = userData.avatar;
     username.textContent = userData.name;
     aboutUser.textContent = userData.about;
