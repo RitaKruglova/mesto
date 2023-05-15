@@ -16,9 +16,6 @@ import {
   addCardFormElement,
   editFormElement,
   validationConfig,
-  avatar,
-  username,
-  aboutUser,
   changeAvatarFormElement,
   avatarInput,
   avatarButton

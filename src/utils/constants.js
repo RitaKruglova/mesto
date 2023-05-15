@@ -3,13 +3,10 @@
 const container = document.querySelector('.content');
 const editButton = container.querySelector('.profile__edit-button');
 const editFormElement = document.querySelector('.popup__form_type_edit-profile');
-const username = container.querySelector('.profile__name');
-const aboutUser = container.querySelector('.profile__description');
 const plusButton = container.querySelector('.profile__add-button');
 const addCardFormElement = document.querySelector('.popup__form_type_add-card');
 const pictureNameInput = document.querySelector('.popup__input_type_picture-name');
 const pictureLinkInput = document.querySelector('.popup__input_type_picture-link');
-const avatar = document.querySelector('.profile__avatar');
 const deleteCardButton = document.querySelector('.popup__submit-button_place_delete-card');
 const changeAvatarFormElement = document.querySelector('.popup__form_type_avatar');
 const avatarInput = document.querySelector('.popup__input_type_avatar');
@@ -28,13 +25,10 @@ export const validationConfig = {
 export {
   editButton,
   editFormElement,
-  username,
-  aboutUser,
   plusButton,
   addCardFormElement,
   pictureNameInput,
   pictureLinkInput,
-  avatar,
   deleteCardButton,
   changeAvatarFormElement,
   avatarInput,
