@@ -15,5 +15,5 @@ HTML, CSS, JavaScript, VSCode, LiveServer
 ```bash
 git@github.com:RitaKruglova/mesto.git
 ```
-2. Ввести в терминале команду npm run build
+2. Ввести в терминале команду npm run dev
 3. Или перейти по ссылке https://ritakruglova.github.io/mesto/
